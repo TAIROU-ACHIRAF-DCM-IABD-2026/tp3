@@ -1,0 +1,16 @@
+url: "https://TAIROU-ACHIRAF-DCM-IABD-2026.github.io"
+baseurl: "/tp3"
+
+include: [assets]
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
