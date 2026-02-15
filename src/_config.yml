@@ -1,16 +1,29 @@
+# Nom du site
+title: TP3 Site
+
+# URL complète du site
 url: "https://TAIROU-ACHIRAF-DCM-IABD-2026.github.io"
+
+# Sous-répertoire si ton dépôt n’est pas user.github.io
 baseurl: "/tp3"
 
+# Inclure certains dossiers dans la génération
 include: [assets]
 
+# Format Markdown
 markdown: kramdown
 
+# Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+# Fichiers à exclure
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
+
+# Theme recommandé pour un site minimal
+theme: minima
