@@ -11,8 +11,6 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    outputs:
-      bundle-path: ${{ steps.bundle-path.outputs.path }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -22,11 +20,23 @@ jobs:
         with:
           ruby-version: 3.2
 
+      - name: Ensure Gemfile exists
+        run: |
+          if [ ! -f Gemfile ]; then
+            echo 'source "https://rubygems.org"' > Gemfile
+            echo 'gem "jekyll", "~> 4.3.2"' >> Gemfile
+            echo 'gem "minimal-mistakes-jekyll", "~> 4.24"' >> Gemfile
+            echo 'gem "html-proofer", "~> 5.0"' >> Gemfile
+            echo 'group :jekyll_plugins do' >> Gemfile
+            echo '  gem "jekyll-feed", "~> 0.16"' >> Gemfile
+            echo '  gem "jekyll-sitemap", "~> 1.4"' >> Gemfile
+            echo 'end' >> Gemfile
+          fi
+
       - name: Install Bundler
         run: gem install bundler -v 2.4.12
 
       - name: Install dependencies
-        id: bundle-path
         run: |
           bundle config set path 'vendor/bundle'
           bundle install
@@ -45,7 +55,7 @@ jobs:
 
       - name: Install Jekyll theme
         run: |
-          bundle add jekyll-theme-my-theme
+          bundle add minimal-mistakes-jekyll
           bundle install
 
   build:

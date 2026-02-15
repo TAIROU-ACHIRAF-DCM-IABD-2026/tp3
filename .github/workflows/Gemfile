@@ -1,13 +1,15 @@
 source "https://rubygems.org"
 
-# Jekyll et thème
+# Jekyll principal
 gem "jekyll", "~> 4.3.2"
-gem "minimal-mistakes-jekyll", "~> 4.24" # adapte la version à la doc du thème
 
-# HTML Proofer pour les tests
+# Thème Minimal Mistakes compatible Jekyll 4
+gem "minimal-mistakes-jekyll", "~> 4.24"
+
+# HTML Proofer pour tester le site
 gem "html-proofer", "~> 5.0"
 
-# Plugins Jekyll officiels
+# Plugins officiels Jekyll
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.16"
   gem "jekyll-sitemap", "~> 1.4"
