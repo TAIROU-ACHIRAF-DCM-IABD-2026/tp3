@@ -1,15 +1,673 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ page.description | default: 'DCM 2026 TP3 Course Material' }}">
-    <title>{{ page.title | default: 'DCM 2026' }} | TP3</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achiraf Tairou · Portfolio</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fbfdff;
+      color: #1e293b;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2rem;
+      background-color: #ffffffdd;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e9edf4;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* hero */
+    .hero {
+      padding: 5rem 2rem 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1 1 400px;
+    }
+
+    .hero-content .badge {
+      background: #e0e7ff;
+      color: #2563eb;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-content h1 span {
+      color: #2563eb;
+      border-bottom: 4px solid #93c5fd;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 550px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.25s;
+    }
+
+    .btn-primary {
+      background: #1e293b;
+      color: white;
+      box-shadow: 0 8px 16px -6px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 2px solid #e2e8f0;
+      color: #334155;
+    }
+
+    .btn-outline:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+      background: #f8fafc;
+    }
+
+    .hero-avatar {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-box {
+      background: linear-gradient(145deg, #dbeafe, #ede9fe);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 30px 40px -20px rgba(37,99,235,0.3);
+    }
+
+    .avatar-box i {
+      font-size: 8rem;
+      color: #1e293b;
+      opacity: 0.9;
+    }
+
+    /* section通用 */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #a78bfa);
+      border-radius: 4px;
+    }
+
+    /* compétences */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-item {
+      background: white;
+      border: 1px solid #eef2f6;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-item i {
+      color: #2563eb;
+      font-size: 1.1rem;
+    }
+
+    .skill-item:hover {
+      border-color: #2563eb;
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px -10px #2563eb40;
+    }
+
+    /* projets */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      border: 1px solid #edf2f7;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.05);
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      border-color: #b1c9f0;
+      box-shadow: 0 28px 32px -16px #2563eb30;
+    }
+
+    .project-icon {
+      background: #e6edfb;
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .project-icon i {
+      font-size: 2rem;
+      color: #2563eb;
+    }
+
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .project-tags span {
+      background: #f1f4f9;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #2d3c53;
+    }
+
+    .project-link {
+      font-weight: 600;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-link i {
+      transition: transform 0.2s;
+    }
+
+    .project-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* À propos */
+    .about-wrap {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 2 1 350px;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      color: #334155;
+      font-size: 1.1rem;
+    }
+
+    .about-highlight {
+      background: #f0f4fe;
+      padding: 1.5rem;
+      border-radius: 2rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .about-highlight i {
+      color: #2563eb;
+      margin-right: 8px;
+    }
+
+    .about-stats {
+      flex: 1 1 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .stat {
+      text-align: center;
+      background: #ffffff;
+      padding: 2rem 1rem;
+      border-radius: 2rem;
+      box-shadow: 0 8px 20px #e2e8f0;
+    }
+
+    .stat .number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    /* contact */
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      background: #ffffff;
+      border-radius: 3rem;
+      padding: 3rem;
+      box-shadow: 0 25px 40px -20px #b9c9e0;
+      border: 1px solid #eef2f8;
+    }
+
+    .contact-info {
+      flex: 1 1 250px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.8rem 0;
+    }
+
+    .contact-detail i {
+      width: 40px;
+      height: 40px;
+      background: #e6edfb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .social-links a {
+      background: #f1f5f9;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: 0.15s;
+    }
+
+    .social-links a:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .contact-form {
+      flex: 2 1 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 1.5px solid #e3eaf2;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .form-group textarea {
+      border-radius: 30px;
+      resize: vertical;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px #dbeafe;
+    }
+
+    .btn-submit {
+      background: #1e293b;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-submit:hover {
+      background: #2563eb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      color: #64748b;
+      border-top: 1px solid #e9edf4;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .avatar-box {
+        width: 220px;
+        height: 220px;
+      }
+      .avatar-box i {
+        font-size: 6rem;
+      }
+      .contact-flex {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    Hello, je suis une page html
-    {{ content }}
+  <header>
+    <nav class="navbar">
+      <div class="logo">A.T.</div>
+      <div class="nav-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#projets">Projets</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO / ACCUEIL -->
+    <section id="accueil" class="hero container">
+      <div class="hero-content">
+        <span class="badge"><i class="fas fa-code" style="margin-right: 6px;"></i>Développeur créatif</span>
+        <h1>Achiraf <span>Tairou</span></h1>
+        <p>Je transforme des idées en expériences digitales élégantes et fonctionnelles. Design + code, avec passion.</p>
+        <div class="btn-group">
+          <a href="#projets" class="btn-primary"><i class="fas fa-arrow-down"></i> Voir mes projets</a>
+          <a href="#contact" class="btn-outline"><i class="fas fa-comment"></i> Contact</a>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-box">
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES (nuage) -->
+    <section style="padding-top: 0;">
+      <div class="container">
+        <div class="skills-grid">
+          <span class="skill-item"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="skill-item"><i class="fab fa-css3-alt"></i> CSS3 / SCSS</span>
+          <span class="skill-item"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill-item"><i class="fab fa-react"></i> React</span>
+          <span class="skill-item"><i class="fab fa-vuejs"></i> Vue</span>
+          <span class="skill-item"><i class="fas fa-database"></i> Node.js</span>
+          <span class="skill-item"><i class="fab fa-figma"></i> Figma</span>
+          <span class="skill-item"><i class="fas fa-paint-brush"></i> UI Design</span>
+          <span class="skill-item"><i class="fas fa-mobile-alt"></i> Responsive</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="container">
+      <h2 class="section-title">Projets récents</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-cart-shopping"></i></div>
+          <h3>MarketFlow</h3>
+          <p>Plateforme e-commerce avec panier dynamique et passerelle de paiement.</p>
+          <div class="project-tags">
+            <span>React</span><span>Stripe</span><span>Node</span>
+          </div>
+          <a href="#" class="project-link">Étude de cas <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-dashboard"></i></div>
+          <h3>Analytics Dash</h3>
+          <p>Dashboard interactif pour visualiser des données en temps réel.</p>
+          <div class="project-tags">
+            <span>Vue.js</span><span>D3</span><span>Express</span>
+          </div>
+          <a href="#" class="project-link">Aperçu <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-calendar-check"></i></div>
+          <h3>TaskFlow</h3>
+          <p>Application de gestion de tâches collaborative (kanban / suivi).</p>
+          <div class="project-tags">
+            <span>Firebase</span><span>Tailwind</span><span>JS</span>
+          </div>
+          <a href="#" class="project-link">Démo <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="apropos" class="container">
+      <h2 class="section-title">À propos de moi</h2>
+      <div class="about-wrap">
+        <div class="about-text">
+          <p>Salut, moi c'est Achiraf ! Développeur front-end et designer UI basé à Paris. Depuis 5 ans, je crée des sites internet et applications sur-mesure avec un souci du détail extrême.</p>
+          <p>J'aime le minimalisme fonctionnel, les micro-interactions soignées et le code propre. Je travaille souvent avec des startups et des agences pour donner vie à leurs concepts.</p>
+          <div class="about-highlight">
+            <i class="fas fa-quote-left"></i> Mon approche : allier créativité et robustesse technique pour des produits qui marquent.
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="number">5+</div>
+            <div>ans d'expérience</div>
+          </div>
+          <div class="stat">
+            <div class="number">24</div>
+            <div>projets livrés</div>
+          </div>
+          <div class="stat">
+            <div class="number">12</div>
+            <div>clients satisfaits</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container" style="padding-bottom: 6rem;">
+      <h2 class="section-title">Travaillons ensemble</h2>
+      <div class="contact-flex">
+        <div class="contact-info">
+          <h3>Discutons de votre projet</h3>
+          <p style="color:#475569;">Que ce soit pour un site, une app ou simplement échanger, je suis ouvert.</p>
+          <div class="contact-detail">
+            <i class="fas fa-envelope"></i>
+            <span>a.tairou@portfolio.dev</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-phone-alt"></i>
+            <span>+33 6 12 34 56 78</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-map-pin"></i>
+            <span>Paris / Remote</span>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+          </div>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <textarea rows="4" placeholder="Parlez-moi de votre idée..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Achiraf Tairou – Tous droits réservés. Conçu avec <i class="fas fa-heart" style="color: #2563eb;"></i> </p>
+  </footer>
+
+  <!-- petit script pour le submit factice (optionnel) -->
+  <script>
+    document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Merci pour votre message (simulation) ! Je vous répondrai vite.');
+    });
+  </script>
 </body>
 </html>
