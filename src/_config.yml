@@ -1,7 +1,6 @@
 url: "https://TAIROU-ACHIRAF-DCM-IABD-2026.github.io"
 baseurl: "/tp3"
 
-
 include: [assets]
 
 markdown: kramdown
